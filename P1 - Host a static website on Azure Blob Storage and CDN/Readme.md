@@ -221,3 +221,33 @@ Here’s a breakdown of what happens when a user visits your new CDN-powered web
     * It stores a copy of the file in its cache for future requests to that same location.
 
 This architecture is highly efficient. The slow trip to the origin server only happens on the first request from any given region. All subsequent requests are handled rapidly by the much closer CDN edge servers, providing a great user experience and reducing load on the storage account.
+
+
+## Part 4: Editing the Website Files and Updating the CDN
+Q. What happens when you want to make a change to any of the webpage files and upload the updated files to the $web container replacing the existing files?
+A. The user would most likely still see the old version of index.html for a while.
+
+**Explanation**
+**Why the Old File is Served: CDN Caching**
+The Azure CDN doesn't check your Blob Storage for a new file every single time a user makes a request. Instead, it holds a copy of your files in its global Points of Presence (POPs) for a set amount of time, known as the Time-to-Live (TTL).
+
+By default, the TTL for Azure CDN from Microsoft is 7 days. This means that once a CDN edge server caches your index.html file, it will continue serving that same version to users in that region for up to a week before checking your Blob Storage origin for an update. This is what makes the CDN so fast—it avoids the "slow trip" back to the origin server.
+
+**How to Serve the New File Immediately: Purge the CDN**
+To force the CDN to fetch your new index.html file right away, you must manually purge the cache. Purging tells all the CDN edge servers to delete their cached copy of the file, forcing them to go back to your Blob Storage to get the latest version on the next request.
+
+Here’s how to do it:
+
+Go to your CDN endpoint resource in the Azure Portal.
+
+In the "Overview" panel, look for the Purge button at the top and click it.
+
+A new panel will open. In the "Content path" box, you must enter the path to the file you want to remove from the cache. To purge just your updated file, you would enter:
+/index.html
+
+Click the Purge button.
+
+The process of clearing the cache across all global edge servers usually takes a couple of minutes. After that, any user visiting your CDN URL will get the brand-new version of your file.
+
+
+
