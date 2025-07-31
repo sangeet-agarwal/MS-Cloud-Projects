@@ -1,5 +1,33 @@
-# Guide: Host a Static Website on Azure Blob Storage and CDN
+## Real-World Problem Scenario
 
+A small business or an individual seeking to showcase a personal portfolio requires a simple, cost-effective, and highly available website. The content consists primarily of static files (HTML, CSS, JavaScript, images) and does not necessitate complex server-side processing or databases.
+
+---
+
+## Why This Matters & Our Architectural Approach
+
+### Problem
+
+Traditional web hosting often involves the acquisition and maintenance of web servers, including managing operating systems, applying security patches, and handling server-side configurations. For static content, this overhead is unnecessary, leading to increased costs and complexity. Furthermore, delivering content globally from a single server can result in high latency for distant users, impacting performance.
+
+### Why This Way
+
+Azure Blob Storage, when configured for static website hosting, provides a serverless solution that eliminates the need for managing traditional web servers. This approach is highly scalable and exceptionally cost-effective, as costs are incurred only for the storage consumed and the operations performed, rather than for always-on compute resources.
+
+Integrating Azure Content Delivery Network (CDN) with the static website further enhances performance by caching content at edge locations geographically closer to end-users. This significantly reduces latency and offloads traffic from the origin storage account, improving the user experience globally.
+
+This architectural choice directly aligns with the **Cost Optimization** and **Performance Efficiency** pillars of the [Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/architecture/framework/).
+
+The abstraction of infrastructure management inherent in this serverless model leads to substantial operational cost savings and simplifies the deployment process, showcasing a key advantage of cloud platforms.
+
+---
+
+## Azure Services Involved
+
+- **Azure Storage Account (Blob Storage)**
+- **Azure CDN**
+
+## Guide: Host a Static Website on Azure Blob Storage and CDN
 This guide provides a complete walkthrough for hosting a static website on Azure, from creating the sample files to deploying and distributing them globally with a CDN.
 
 ---
