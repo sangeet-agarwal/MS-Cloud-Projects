@@ -199,16 +199,45 @@ Now, you'll configure the storage account to serve web content.
 7.  Azure will now display a **Primary endpoint URL**. Copy this URL and save it. This is the direct link to your website on Blob Storage. It will look something like `https://youruniquenameportfolio.z13.web.core.windows.net/`.
 
 ---
-## Step 3: Upload Your Website Files
+## Step 3A: Upload Your Website Files Manually
 1.  In the left-hand menu, under **Data storage**, click on **Containers**.
 2.  You will see a new container named `$web`. This was created automatically when you enabled the static website feature. Click on it.
 3.  Click the **Upload** button.
 4.  In the panel that opens, click the folder icon to browse for your files. Select the `index.html`, `style.css`, and `script.js` files you created earlier.
 5.  Click **Upload**.
 
+
+## Step 3B: Upload Your Website Files using Visual Studio Code
+
+### Prerequisites
+- An active **Azure subscription** is required.
+- It is recommended to install **Visual Studio Code** with the **Azure Storage extension** for streamlined deployment.
+
+1. Create Sample Website Files
+
+    - On your local file system, create a folder (e.g., `mywebsite`).
+    - Inside this folder, create or download the three files index.html, style.css and script.js
+  
+2. Deploy Website
+
+    - Open the `mywebsite` folder in **Visual Studio Code**.
+    - In the Explorer panel, right-click within the folder and select **"Deploy to Static Website..."**
+    - Follow the prompts:
+      - Log into Azure.
+      - Select your subscription.
+      - Choose the storage account where static website hosting was enabled.
+    - Visual Studio Code will upload your files to the **`$web`** container.
+
+3. Verify Deployment
+
+    - Once deployment is complete, Visual Studio Code will display a success message and provide the **primary endpoint URL** for your static website.
+    - Open this URL in a browser to confirm your "Hello World!" page is live.
+---
+
 >  **Checkpoint:** Your site is now live! Paste the **Primary endpoint URL** you copied earlier into your browser. You should see your portfolio website. The next step will make it faster using a CDN.
 
 ---
+
 ## Step 4: Set Up the Azure CDN
 A Content Delivery Network (CDN) will cache your website at edge locations around the world, making it load faster for all users.
 
