@@ -258,6 +258,22 @@ to user (Fast, low latency)              user (Fast)    (Static website endpoint
 </pre>
 
 
+
+```mermaid
+flowchart TD
+    User -->|HTTP Request| CDN["Azure CDN POP (Nearest)"]
+
+    CDN --> CacheCheck{Cache Check}
+    CacheCheck -->|Cache Hit| ServeCached["Serve content directly to user\nFast, low latency"]
+    CacheCheck -->|Cache Miss| OriginRequest["Forward request to Origin\nBlob Storage Static Website"]
+
+    OriginRequest --> BlobStorage["Azure Blob Storage\nStatic Website Container $web"]
+    BlobStorage -->|Retrieve requested file\ne.g. index.html| CDN
+
+    CDN -->|Respond with file\nCache file at POP for future use| User
+```
+
+
 This architecture is highly efficient. The slow trip to the origin server only happens on the first request from any given region. All subsequent requests are handled rapidly by the much closer CDN edge servers, providing a great user experience and reducing load on the storage account.
 
 
