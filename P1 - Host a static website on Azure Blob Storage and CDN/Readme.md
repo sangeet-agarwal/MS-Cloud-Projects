@@ -220,6 +220,44 @@ Here’s a breakdown of what happens when a user visits your new CDN-powered web
     * It serves the file to the user's browser.
     * It stores a copy of the file in its cache for future requests to that same location.
 
+## Technical Network Diagram for Azure CDN-powered Website
+
+
+<pre>
++--------------------+                  +----------------------------+
+|                    |                  |                            |
+|     User Browser   +----HTTP Request->|  Azure CDN POP (Nearest)   |
+|  (https://my-...)  |                  |                            |
++--------------------+                  +------------+---------------+
+                                                |
+                                                | Cache Check
+                           +--------------------+---------------------+
+                           |                                          |
+                   Cache Hit?                                  Cache Miss?
+                   (Files in CDN Cache)                      (Files not in Cache or Expired)
+                           |                                          |
+        +------------------+----------------+           +-------------+--------------+
+        |                                   |           |                            |
+Serve content directly                   Serve from   Forward request to Origin (Blob Storage)
+to user (Fast, low latency)              user (Fast)    (Static website endpoint)
+                                                                |
+                                                                v
+                                              +----------------------------+
+                                              |                            |
+                                              |   Azure Blob Storage       |
+                                              |  Static website container  |
+                                              |        ($web container)    |
+                                              +----------------------------+
+                                                                |
+                                             Retrieves requested file (e.g., index.html)
+                                                                |
+                                                                v
+                              +----------------+---------------+-----------------+
+                              |                |                                 |
+                       Respond with file        Cache file at POP for future use    Return file to User Browser
+</pre>
+
+
 This architecture is highly efficient. The slow trip to the origin server only happens on the first request from any given region. All subsequent requests are handled rapidly by the much closer CDN edge servers, providing a great user experience and reducing load on the storage account.
 
 
