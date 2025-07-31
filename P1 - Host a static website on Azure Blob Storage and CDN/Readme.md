@@ -304,4 +304,11 @@ Click the Purge button.
 The process of clearing the cache across all global edge servers usually takes a couple of minutes. After that, any user visiting your CDN URL will get the brand-new version of your file.
 
 
+## Part 5: Expected End-User/Customer Benefits
+
+- **Cost Savings**: Users benefit from minimal hosting costs, as they only pay for the storage consumed and data transfer, avoiding the expense of dedicated servers.
+- **High Availability & Performance**: Content is delivered rapidly from geographically closest CDN edge locations, ensuring a fast and responsive user experience globally.
+- **Reduced Operational Overhead**: There are no servers to manage, patch, or secure, significantly simplifying maintenance.
+- **Scalability**: The solution automatically scales to handle traffic spikes without any manual intervention, ensuring consistent performance even under heavy load.
+
 
