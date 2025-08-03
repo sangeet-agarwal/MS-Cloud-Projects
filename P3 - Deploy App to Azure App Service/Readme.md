@@ -1,5 +1,43 @@
 # Deploying a Simple Python Web Application to Azure App Service
 
+## Real-World Problem Scenario
+
+A startup needs to rapidly deploy a web application, such as a customer feedback portal or a simple blog, with minimal operational overhead. The primary focus is on application development and business logic, rather than managing underlying server infrastructure.
+
+## Why This Matters & Our Architectural Approach
+
+### Problem
+
+Even with cloud VMs, managing the operating system (OS) still involves tasks like patching, security updates, and configuring scaling. This diverts valuable developer time and resources away from core application development.
+
+### Why This Way
+
+Azure App Service is a Platform-as-a-Service (PaaS) offering that abstracts away the complexities of server infrastructure management, allowing developers to concentrate solely on writing and deploying their application code.  
+It supports a wide range of programming languages and frameworks, including .NET, Node.js, Python, and Java.
+
+App Service provides built-in features such as:
+
+- Autoscaling  
+- Load balancing  
+- Continuous deployment capabilities  
+
+These are essential for modern application development.
+
+This approach strongly aligns with:
+
+- **Operational Excellence** by reducing management burden  
+- **Performance Efficiency** through automatic scaling  
+- **Cost Optimization** by only paying for the compute resources consumed by the application  
+
+This demonstrates a clear progression from **IaaS (VMs)** to **PaaS**, emphasizing developer productivity and automation as key benefits of cloud-native development.
+
+## Azure Services Involved
+
+- Azure App Service  
+- App Service Plan  
+- Azure DevOps (for CI/CD, optional but recommended)
+
+
 This guide provides step-by-step instructions for deploying a simple Python web application (using Flask as an example) to Azure App Service. We'll cover setting up your local environment, creating the Azure resources, configuring your app for deployment, and troubleshooting common issues.
 
 ## Table of Contents
